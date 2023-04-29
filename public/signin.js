@@ -4,8 +4,19 @@ const submit = document.querySelector('#submit');
 
 submit.onclick = async() => {
     try {
-        console.log("submit onclick")
+        const obj = {
+            email : email.value,
+            password : password.value
+        }
+        const res = await axios.post('http://localhost:3000/signin', obj)
+        if(res.status === 200){
+            alert("login successful")
+            console.log(res.data.data);
+        }
+        else {
+            console.log(res.message);
+        }
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
