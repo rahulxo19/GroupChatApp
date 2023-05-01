@@ -6,7 +6,7 @@ const submit = document.getElementById('submit');
 
 submit.onclick = async(e) => {
     e.preventDefault();
-    console.log('button pressed')
+    console.log('button pressed');
     try{
         const obj = {
             name : nam.value,
@@ -18,7 +18,7 @@ submit.onclick = async(e) => {
         const res = await axios.post('http://localhost:3000/signup', obj)
         alert(`${res.data}`)
         console.log(res.data);
-        
+        window.location.href = './signin.html';
     } catch (err) {
         console.log(err.message);
     }

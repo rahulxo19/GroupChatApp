@@ -20,6 +20,9 @@ const User = sequelize.define('users',{
     },
     pswd: {
         type: Sequelize.STRING
+    },
+    lastSeen: {
+        type: Sequelize.DATE
     }
 })
 
