@@ -7,7 +7,9 @@ const router = express.Router();
 
 router.get('/chat', chat.loggedIn);
 
-router.post('/postChat', chat.postChats);
+router.get('/latestChats?:createdAt', chat.latestChats)
+
+router.post('/postChats', chat.postChats);
 
 router.get('/getChats', chat.getChats);
 
