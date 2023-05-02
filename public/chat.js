@@ -51,7 +51,14 @@ async function getChats() {
   }
 }
 
-window.addEventListener('load', async() => {
+// window.addEventListener('load', async() => {
+//   await Display();
+//   await getChats();
+// })
+
+async function updateChats(){
   await Display();
   await getChats();
-})
+}
+
+setInterval(updateChats, 1000)
