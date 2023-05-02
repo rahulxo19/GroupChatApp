@@ -37,8 +37,6 @@ async function Display() {
   }
 }
 
-Display();
-
 async function getChats() {
   const res = await axios.get("http://localhost:3000/getChats", { headers : { Auth: token }})
   if(res.status === 200){
@@ -53,4 +51,7 @@ async function getChats() {
   }
 }
 
-getChats();
+window.addEventListener('load', async() => {
+  await Display();
+  await getChats();
+})
