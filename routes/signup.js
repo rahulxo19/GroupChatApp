@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.get('/chat', chat.loggedIn);
 
+router.post('/postChat', chat.postChats);
+
+router.get('/getChats', chat.getChats);
+
 router.post('/signup', signup.signup);
 
 router.post('/signin', signup.signin);

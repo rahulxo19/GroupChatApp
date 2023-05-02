@@ -12,7 +12,7 @@ submit.onclick = async() => {
         if(res.status === 200){
             alert("login successful")
             console.log(res.data.data);
-            localStorage.setItem("name", res.data.data);
+            localStorage.setItem("email", res.data.data);
             window.location.href = './chat.html';
         }
         else {

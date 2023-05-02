@@ -28,7 +28,7 @@ exports.signin = async (req, res) => {
   const passwordMatches = await bcrypt.compare(password, user.pswd);
   if (passwordMatches) {
     await user.update({ lastSeen: Date.now() });
-    const token = jwt.sign({ name: user.name }, process.env.SECRET_KEY);
+    const token = jwt.sign({ email: user.email }, process.env.SECRET_KEY);
     return res.status(200).json({ data: token });
   }
   res.status(401).json({ message: "User not authorized" });
