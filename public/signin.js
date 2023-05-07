@@ -8,7 +8,7 @@ submit.onclick = async() => {
             email : email.value,
             password : password.value
         }
-        const res = await axios.post('http://localhost:3000/signin', obj)
+        const res = await axios.post('http://localhost:3000/user/signin', obj)
         if(res.status === 200){
             alert("login successful")
             console.log(res.data.data);

@@ -15,7 +15,7 @@ submit.onclick = async(e) => {
             password : password.value
         }
         console.log(obj);
-        const res = await axios.post('http://localhost:3000/signup', obj)
+        const res = await axios.post('http://localhost:3000/user/signup', obj)
         alert(`${res.data}`)
         console.log(res.data);
         window.location.href = './signin.html';
