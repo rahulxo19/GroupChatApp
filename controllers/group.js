@@ -60,7 +60,7 @@ exports.deleteGroup = async(req, res) => {
     try {
         const user = req.user;
         const groupId = req.params.groupId;
-        const group = await Group.findAll({ where : {
+        const group = await Group.findOne({ where : {
             id: groupId
         }})
         console.log(group);

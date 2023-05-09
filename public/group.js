@@ -2,6 +2,7 @@ const form = document.getElementById("createGroupForm");
 const groupName = document.getElementById("groupName");
 const groupAdmins = document.getElementById("admins");
 const groupMembers = document.getElementById("members");
+const submitGroup = document.getElementById('submit-group');
 const gps = document.getElementById("groups");
 const IsEdit = document.getElementById("isedit");
 
@@ -28,7 +29,6 @@ async function getGroups() {
 }
 
 async function deleteGroup(groupId) {
-    console.log(groupId);
   const response = await axios.delete(
     `http://localhost:3000/groups/${groupId}`,
     config
@@ -74,6 +74,7 @@ async function editGroup(newGroup, groupId) {
   groupMembers.value = "";
   groupAdmins.value = "";
   IsEdit.value = "";
+  submitGroup.textContent = "Create Group"
 }
 
 function showGroups(groups) {
@@ -84,20 +85,18 @@ function showGroups(groups) {
     adminPerks = "";
     if (group.usergroup.asAdmin) {
       adminPerks = `
-            <td>
-              <div class="btn-group">
+            <div class="heading-btn">
                   <button class="btn btn-sm btn-primary" id = "editgroup">edit</button>
                   <button class="btn btn-sm btn-danger" id = "deletegroup">X</button>
-              </div>
-            </td>
+            </div>
             `;
     }
     groupHTML += `
-        <tr id = ${groupId}>
-            <th>${index + 1}</th>
-            <td>${groupName}</td>
+        <div class="group" id = ${groupId}>
+            <div class="heading">${index + 1}.)</div>
+            <div class="heading">${groupName}</div>
             ${adminPerks}
-        </tr>
+        </div>
         `;
   });
   gps.innerHTML = groupHTML;
@@ -130,7 +129,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     isEdit = e.target.id == "editgroup" ? true : false;
   
     if (!isDelete && !isEdit) {
-      const groupId = e.target.innerHTML.trim()[0];
+      const groupId = e.target.parentNode.id;
       localStorage.setItem("oldmessages", JSON.stringify([]));
       getMessages(parseInt(groupId));
     } else if (isDelete) {
@@ -138,6 +137,7 @@ document.addEventListener("DOMContentLoaded", async (e) => {
       await deleteGroup(groupId);
     } else if (isEdit) {
       const groupId = e.target.parentNode.parentNode.textContent.trim()[0];
+      submitGroup.textContent = "Edit Group";
       await getGroup(groupId);
     }
   };

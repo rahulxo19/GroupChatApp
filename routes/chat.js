@@ -5,7 +5,7 @@ const authenticate = require('../middleware/auth');
 
 const router = express.Router();
 
-router.get('/getChats', chat.getChats);
+router.get('/getChats', authenticate.authenticate, chat.getChats);
 
 router.post('/postChat', authenticate.authenticate, chat.postChat);
 
